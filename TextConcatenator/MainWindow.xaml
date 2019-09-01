@@ -1,0 +1,59 @@
+﻿<Window x:Class="TextConcatenator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:TextConcatenator="clr-namespace:TextConcatenator"
+        Title="File concatenator" Height="350" Width="525">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="boolToVisibilityConverter"></BooleanToVisibilityConverter>
+        <TextConcatenator:NotBoolToVisibilityConverter x:Key="notBoolToVisibilityConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <GroupBox Header="Parameters">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="Text between files"/>
+                    <TextBox Text="{Binding TextBetweenFiles}" MinWidth="150"/>
+                </StackPanel>
+
+                <CheckBox Grid.Row="1" Grid.Column="0" IsChecked="{Binding CompareByLength}" Content="Compare by length" Margin="5"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Row="1" Header="File">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Files path (folder)" Margin="5"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FilePath}" Margin="5"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Result file name" Margin="5"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ResFileName}" Margin="5"/>
+
+            </Grid>
+        </GroupBox>
+
+        <Button Grid.Row="2" Content="Concatenate" Click="ButtonSplit_OnClick"/>
+    </Grid>
+</Window>
